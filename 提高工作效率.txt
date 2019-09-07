@@ -1,0 +1,9 @@
+win+D 所有窗口最小化
+
+工具
+PlantUML	http://plantuml.com/	画UML图
+ProcessOn	https://www.processon.com/	比较全的在线画图工具
+AsciiFlow	http://asciiflow.com/	纯文本画图工具
+OmniPlan	https://www.omnigroup.com/omniplan	画甘特图
+
+

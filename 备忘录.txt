@@ -1,0 +1,393 @@
+公司系数0， 团队基础系数0.8
+
+年终奖公式为：
+年终奖 = 月工资 * 2 *(0.6*个人绩效系数+0.2*min(团队绩效系数,个人绩效系数）+0.2*min（公司绩效系数，个人绩效系数）) * 时间系数
+
+自增主键最大的问题是把公司业务的关键运营数据完全暴露给了竞争对手和VC。
+举个例子，用户表采用自增主键，只需要每周一早上去注册一个用户，把上周注册的ID和本周注册的ID一比，
+立刻就知道了该公司一周的新增用户数量。
+如果网站声称新增了10万用户，但ID却只增加了1千，就只能呵呵了。
+
+开发环境jenkins的地址 账号是大家名字全拼 密码是123
+
+#################################################################################################
+
+彩蛋猫后台管理系统
+
+彩蛋猫后台管理系统添加管理员
+INSERT INTO `caidanmao`.`admin_user` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`name`,
+	`phone`,
+	`status`,
+	`password`
+)
+VALUES
+	(
+		'100168',
+		'0',
+		'1516782891341',
+		'1516782891341',
+		'曹靖',
+		'15110164590',
+		'1',
+		'EFF585B20BF3A20FD36BEC080BC6603E154DDE0021BF8B3753CE1BFFA8E575CD091CD250F62DC0930822E44598EEB1F8781000FB'
+	);
+#################################################################################################
+彩蛋猫后台管理系统添加集团
+INSERT INTO `caidanmao_shop`.`group_company` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`fullName`,
+	`shortName`,
+	`description`,
+	`city`,
+	`isTest`,
+	`type`,
+	`posGroupId`,
+	`posType`
+)
+VALUES
+	(
+		'100485',
+		'0',
+		'1516786948672',
+		'1516786948672',
+		'Apache',
+		'Apache',
+		'Apache组织',
+		'Beijing',
+		'0',
+		'0',
+		'',
+		'-1'
+	);
+#################################################################################################
+彩蛋猫后台管理系统添加店铺
+INSERT INTO `caidanmao_shop`.`shop` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`groupId`,
+	`logo`,
+	`brand`,
+	`name`,
+	`city`,
+	`businessDistrict`,
+	`address`,
+	`status`,
+	`adminPhone`,
+	`latitude`,
+	`longitude`,
+	`paymentQrcode`,
+	`paymentQrcodeType`,
+	`type`,
+	`posShopId`,
+	`posType`,
+	`posGroupId`
+)
+VALUES
+	(
+		'102132',
+		'1',
+		'1516790589952',
+		'1516786996638',
+		'100485',
+		'',
+		'',
+		'Apache店铺',
+		'北京',
+		'望京',
+		'望京soho',
+		'1',
+		'15110164590',
+		'40.004532',
+		'116.475304',
+		'group2/M00/3C/3E/wKgVSlpoY5PCjnq3AAH4UYKi_sc325.png',
+		'0',
+		'0',
+		'0',
+		'-1',
+		'0'
+	);
+#################################################################################################
+彩蛋猫后台管理系统添加设备、添加桌台、设备绑定桌台
+INSERT INTO `caidanmao_shop`.`shop_table` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`shopId`,
+	`tableName`,
+	`type`,
+	`posTableId`,
+	`area`,
+	`tableCode`,
+	`groupId`
+)
+VALUES
+	(
+		'109335',
+		'0',
+		'1516789896485',
+		'1516789896485',
+		'102132',
+		'Apache',
+		'0',
+		'',
+		'',
+		'',
+		'100485'
+	);
+	
+INSERT INTO `caidanmao_shop`.`terminal_device` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`sn`,
+	`shopId`,
+	`tableId`,
+	`softwareVersion`,
+	`status`,
+	`groupId`
+)
+VALUES
+	(
+		'100248',
+		'1',
+		'1516789896527',
+		'1516789893827',
+		'1516789019603',
+		'102132',
+		'109335',
+		'',
+		'1',
+		'100485'
+	);
+#################################################################################################
+
+彩蛋猫公众号授权
+INSERT INTO `caidanmao_wechat`.`wechat_auth_info` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`authorizerAppid`,
+	`authorizerAccessToken`,
+	`authorizerRefreshToken`,
+	`accessTokenExpiresIn`,
+	`refreshTokenExpiresIn`,
+	`funcInfo`,
+	`shopId`,
+	`nickName`,
+	`headImg`,
+	`serviceTypeInfo`,
+	`verifyTypeInfo`,
+	`userName`,
+	`principalName`,
+	`alias`,
+	`businessInfo`,
+	`qrcodeUrl`,
+	`jsApiTicket`,
+	`cardTicket`,
+	`accessTokenActionTime`,
+	`refreshTokenActionTime`,
+	`jsApiTicketActionTime`,
+	`cardTicketActionTime`,
+	`jsApiTicketExpiresIn`,
+	`cardTicketExpiresIn`,
+	`status`
+)
+VALUES
+	(
+		'1',
+		'1',
+		'1516797873242',
+		'1516783241094',
+		'wx956513c1d4ee3452',
+		'6_0IsfVdDV8BegSFS-Q70FZyofvmya7Ln52C-UDr_Uu9_Nt8NoNgbvtuy6BmYg071T5o-hG6GiLNIgID8Wi4uvEmGv7o0AH81vJMaWuWbLjvf2pQ7CTjMYV-1nF4womULs651hliwecVG653piBVKdAIDWQF',
+		'refreshtoken@@@IZmym33zgHLIAeQbVB1TJLZ4j_-oGP0JjftHdhnp08M',
+		'7200',
+		'0',
+		'1,15,4,7,2,3,11,8',
+		'102132',
+		'cdmcs',
+		'',
+		'2',
+		'0',
+		'gh_9ad3a8a1eccf',
+		'北京多来点信息技术有限公司',
+		'',
+		'{\"open_card\":1,\"open_pay\":0,\"open_scan\":0,\"open_shake\":0,\"open_store\":0}',
+		'http://mmbiz.qpic.cn/mmbiz_jpg/mQcKbyMBdToCCy7UdXW73t2icKYC4Qx4iawFRPokdicVZOoDTbbXzhzB4P37DN8JpO1iaICngTlk2oz9p9spFQtIibg/0',
+		'd3yp2Ud9Gzwj6dnSWFhcRQK4_ly9E2yTH73s3X9ewksq0GswfA6UOtBy0NaZcerYBOgYqHsrzTXjbyst4ac9xw',
+		'9KwiourQPRN3vx3Nn1c_ib6VmADqO8QKeqQOCRV9PoIn291vDftyfq71rKZVYDQRs5aQ_Gy6oqxqEc8jwibR2g',
+		'1516797873242',
+		'1516783241093',
+		'1516797059678',
+		'1516797058942',
+		'7200',
+		'7200',
+		'1'
+	);
+
+#################################################################################################
+彩蛋猫用户
+INSERT INTO `caidanmao_user`.`user` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`phone`,
+	`wechatOpenId`,
+	`wechatNickname`,
+	`wechatHeadImgUrl`,
+	`wechatSex`,
+	`wechatProvince`,
+	`wechatCity`,
+	`wechatCountry`,
+	`wechatPrivilege`,
+	`hualalaUserId`,
+	`unionId`
+)
+VALUES
+	(
+		'106',
+		'1',
+		'1516795736463',
+		'1516789986081',
+		'15110164590',
+		'oTt2s0sByNcqgaKvsoUGdgSqvvt8',
+		'AI +BigDada+Cloud',
+		'http://wx.qlogo.cn/mmopen/vi_32/jdcEibbu6EicF5nkgMH5y9LSX2gEBs5nfGItra9JiaENosmE2GDyg4N48EZ5OzU164dySwlicu7LNmjZlRXHnVYZjQ/132',
+		'1',
+		'北京',
+		'',
+		'中国',
+		'',
+		'106',
+		'oVtNB0qc-06T0acFV487QUcJv7zc'
+	);
+#################################################################################################
+彩蛋猫添加广告主
+INSERT INTO `caidanmao_advertisement`.`advertiser` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`name`,
+	`status`
+)
+VALUES
+	(
+		'104',
+		'0',
+		'1516787527289',
+		'1516787527289',
+		'Apache',
+		'1'
+	);
+#################################################################################################
+彩蛋猫添加广告	
+INSERT INTO `caidanmao_advertisement`.`advertisement_plan` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`advertiserId`,
+	`planName`,
+	`planDesc`,
+	`chargeType`,
+	`material`,
+	`startDate`,
+	`endDate`,
+	`status`,
+	`showDuration`,
+	`cpcUrl`,
+	`cpcQrcodeUrl`
+)
+VALUES
+	(
+		'3',
+		'0',
+		'1516787718465',
+		'1516787708184',
+		'104',
+		'Apache',
+		'Apache出品必属精品',
+		'1',
+		'http://res.hualala.com/group2/M02/09/5F/wKgVT1poWFDXgUlIAAAhiBXvP08255.png',
+		'20180124',
+		'20190808',
+		'1',
+		'60',
+		'',
+		''
+	);
+	
+INSERT INTO `caidanmao_advertisement`.`advertisement_plan_direction_bd` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`planId`,
+	`businessDistrict`
+)
+VALUES
+	(
+		'3',
+		'0',
+		'1516787708254',
+		'1516787708254',
+		'3',
+		'望京'
+	);
+
+INSERT INTO `caidanmao_advertisement`.`advertisement_plan_direction_city` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`planId`,
+	`city`
+)
+VALUES
+	(
+		'3',
+		'0',
+		'1516787708228',
+		'1516787708228',
+		'3',
+		'北京'
+	);
+
+INSERT INTO `caidanmao_advertisement`.`advertisement_plan_direction_shop` (
+	`id`,
+	`action`,
+	`actionTime`,
+	`createTime`,
+	`planId`,
+	`shopId`
+)
+VALUES
+	(
+		'225',
+		'0',
+		'1516787708329',
+		'1516787708329',
+		'3',
+		'102132'
+	);
+#################################################################################################
+
+
+
+
+

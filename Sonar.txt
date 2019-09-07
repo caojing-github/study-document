@@ -1,0 +1,73 @@
+访问路径:http://localhost:9000/ 默认用户名admin密码admin
+
+Sonar分析项目,强烈推荐，pom文件中不需要加插件，直接执行下面命令，缺点Jenkins没显示跳转Sonar页面的选项卡
+mvn compile sonar:sonar -Dsonar.host.url=http://192.168.1.54:9000 -Dsonar.login=4fc5bcc22deb559fc60fd55b3a27822e7f68b9b3
+
+sonar安装插件有2种方式：第一种将插件下载完存放在sonar的插件目录，第二种使用web界面来使用安装 
+存放插件路径[/usr/local/sonarqube/extensions/plugins/]
+
+Maven使用Sonar（本地已安装Soanr）
+方式一:
+1、在项目目录下新建sonar-project.properties文件，内容如下:
+sonar.projectKey=项目名称
+sonar.projectName=项目名称
+sonar.sources=src #软件包存放路径
+sonar.language=java #语言
+sonar.sourceEncoding=UTF-8 #字体
+sonar.java.binaries=target/classes
+2、在项目目录下执行
+mvn compile sonar:sonar -Dsonar.host.url=http://192.168.1.54:9000 -Dsonar.login=4fc5bcc22deb559fc60fd55b3a27822e7f68b9b3
+方式二:
+1、在项目目录下执行
+mvn compile sonar:sonar -Dsonar.host.url=http://192.168.1.54:9000 -Dsonar.login=4fc5bcc22deb559fc60fd55b3a27822e7f68b9b3
+
+Jenkins使用Sonar（执行SonarQube Scanner必须之前编译过有class文件）
+1、安装Sonar插件
+2、在“系统设置”中配置SonarQube servers
+   "Environment variables"打开
+    Name与Server authentication token对应，如caojing与4fc5bcc22deb559fc60fd55b3a27822e7f68b9b3
+	Server URL如；http://192.168.1.54:9000
+3、在“全局工具配置“里安装最新的SonarQube Scanner,自动安装
+4、在构建后步骤添加“Execute SonarQube Scanner"，其中Analysis properties填写如下参数
+sonar.projectKey=项目名称
+sonar.projectName=项目名称
+sonar.sources=src
+sonar.language=java
+sonar.sourceEncoding=UTF-8
+sonar.java.binaries=target/classes
+
+若出现'svn: E170001: Authentication required for"错误
+	1.打开sonarqube的控制台，使用admin登录后 ，在配置->SCM->菜单中，将Disabled the SCM Sensor设置为true，
+	2.在svn页面，设置svn的用户名和密码。
+
+
+	
+	
+	
+	
+	
+	
+======================================================================================================
+sonar默认集成了Java Ecosystem插件，该插件是一组插件的合集
+（1）Java [sonar-java-plugin]：java源代码解析，计算指标等
+（2）Squid [sonar-squid-java-plugin]：检查违反Sonar定义规则的代码
+（3）Checkstyle [sonar-checkstyle-plugin]：使用CheckStyle检查违反统一代码编写风格的代码
+（4）FindBugs [sonar-findbugs-plugin]：使用FindBugs检查违反规则的缺陷代码
+（5）PMD [sonar-pmd-plugin]：使用pmd检查违反规则的代码
+（6）Surefire [sonar-surefire-plugin]：使用Surefire执行单元测试
+（7）Cobertura [sonar-cobertura-plugin]：使用Cobertura获取代码覆盖率
+（8）JaCoCo [sonar-jacoco-plugin]：使用JaCOCO获取代码覆盖率
+常用的插件：
+（1）JavaScript代码检查：http://docs.codehaus.org/display/SONAR/JavaScript+Plugin
+（2）Python代码检查：http://docs.codehaus.org/display/SONAR/Python+Plugin
+（3）Web页面检查（HTML、JSP、JSF、Ruby、PHP等）：http://docs.codehaus.org/display/SONAR/Web+Plugin
+（4）xml文件检查：http://docs.codehaus.org/display/SONAR/XML+Plugin
+（5）scm源码库统计分析：http://docs.codehaus.org/display/SONAR/SCM+Stats+Plugin
+（6）文件度量：http://docs.codehaus.org/display/SONAR/Tab+Metrics+Plugin
+（7）中文语言包：http://docs.codehaus.org/display/SONAR/Chinese+Pack
+（8）时间表显示度量结果：http://docs.codehaus.org/display/SONAR/Timeline+Plugin
+（9）度量结果演进图：http://docs.codehaus.org/display/SONAR/Motion+Chart+Plugin
+（b）插件配置示例（本段内容来自http://www.ibm.com/developerworks/cn/java/j-lo-sonar/
+
+
+
