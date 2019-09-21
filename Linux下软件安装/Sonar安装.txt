@@ -1,0 +1,18 @@
+前提：已经安装Sonar
+1、获取 postgresql 的镜像
+docker pull postgres
+2、启动 postgresql
+docker run --name db -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=sonar -d postgres
+3、获取 sonarqube 的镜像
+docker pull sonarqube
+4、启动 sonarqube
+docker run --name sq --link db -e SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar -p 9000:9000 -d sonarqube
+打开 http://localhost:9000/
+登录账号：admin 密码：admin
+
+---------------------------------------------------------------------------------------
+
+用sonarqube自带的H2数据库启动（不适合生产环境）
+docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
+使用mysql容器（其中的mysql5.6.42为容器名）
+docker run --name sonarqube --link mysql5.6.42 -v /opt/sonarqube/data:/opt/sonarqube/data -e TZ='Asia/Shanghai' -e SONARQUBE_JDBC_USERNAME=root -e SONARQUBE_JDBC_PASSWORD=123456 -e SONARQUBE_JDBC_URL="jdbc:mysql://mysql5.6.42:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false" -p 9000:9000 -d sonarqube

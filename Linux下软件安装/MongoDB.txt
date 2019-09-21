@@ -1,0 +1,16 @@
+docker pull mongo
+docker run --name mongodb -p 27017:27017 -itd mongo
+docker exex -it mongodb /bin/bash
+
+连接mongo客户端
+	mongo
+选择admin库
+	use admin
+添加角色为userAdminAnyDatabase密码为123456用户名为root的用户
+	db.createUser(
+		{
+			user: "root",
+			pwd: "123456",
+			roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+		}
+	);

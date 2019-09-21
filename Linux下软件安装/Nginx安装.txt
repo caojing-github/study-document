@@ -1,0 +1,11 @@
+重新加载配置文件：
+nginx -s reload
+
+重启
+service nginx reload
+
+192.168.2.206
+root 123456
+http://192.168.2.206/backstage/
+应用目录/data/tomcat/backstage_10001/webapps
+/etc/nginx.conf

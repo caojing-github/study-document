@@ -223,7 +223,7 @@ git rebase
 
 HEAD~2 表示合并最近两次的提交, 如果想合并最近三次的提交修改为: git rebase -i HEAD~3
 git rebase -i HEAD~2
-
+将最后的 pick改为 f，然后git push -f推到远程仓库
 
 
 

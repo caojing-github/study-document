@@ -1,0 +1,59 @@
+rpm -qa | grep mysql  
+如果已经安装了，将其卸载，如：
+rpm -e --nodeps  mysql-libs-5.1.73-5.el6_6.i686
+
+1、mkdir /usr/local/src/mysql
+2、cd /usr/local/src/mysql
+tar -xvf MySQL-5.6.22-1.el6.i686.rpm-bundle.tar
+1、  安装依赖：
+   yum -y install libaio.so.1 libgcc_s.so.1 libstdc++.so.6
+需要升级libstdc++-4.4.7-4.el6.x86_64
+yum  update libstdc++-4.4.7-4.el6.x86_64
+1、  安装中：
+   rpm -ivh MySQL-server-5.6.22-1.el6.i686.rpm
+  1、  安装client
+   rpm -ivh MySQL-client-5.6.22-1.el6.i686.rpm
+安装依赖：
+  yum -y install libncurses.so.5 libtinfo.so.5
+1、  查询mysq服务运行状态
+service mysql status
+1、  启动mysql服务
+service mysql start
+1、修改root密码：SET PASSWORD = PASSWORD('123456');
+加入到系统服务：
+chkconfig --add mysql
+自动启动：
+chkconfig mysql on
+查询列表：
+chkconfig
+说明：都没关闭（off）时是没有自动启动。
+开启远程访问
+登录：
+mysql -uroot –p123456
+ 
+设置远程访问（使用root密码）：
+grant:赋予
+privileges:权限,规则
+ 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '密码' WITH GRANT OPTION;
+flush privileges;
+ 
+防火墙打开3306端口
+/sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
+ 
+将打开的端口的访问规则保存在文件中
+/etc/rc.d/init.d/iptables save
+ 
+查看机器开放的端口号
+/etc/init.d/iptables status
+
+设置MySql字符集方法
+SET character_set_client = utf8mb4 ;  
+SET character_set_connection = utf8mb4 ;  
+SET character_set_database = utf8mb4 ;   
+SET character_set_results = utf8mb4 ;    
+SET character_set_server = utf8mb4 ;   
+
+SET collation_connection = utf8mb4 ;  
+SET collation_database = utf8mb4 ;   
+SET collation_server = utf8mb4 ; 

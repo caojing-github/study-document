@@ -1,0 +1,37 @@
+1、先安装Erlang
+rpm -Uvh http://www.rabbitmq.com/releases/erlang/erlang-18.1-1.el7.centos.x86_64.rpm
+
+2、安装rabbitmq-server
+rpm -Uvh http://www.rabbitmq.com/releases/rabbitmq-server/v3.5.6/rabbitmq-server-3.5.6-1.noarch.rpm
+
+3、查看rabbitmq-server是否安装
+rpm -qa | grep rabbitmq
+
+4、将rabbitmq服务加到系统服务中
+systemctl start rabbitmq-server
+systemctl enable rabbitmq-server
+注：也可以用
+service rabbitmq-server start启动rabbitmq服务
+service rabbitmq-server stop关掉服务
+查看rabbit-server当前状态
+rabbitmqctl status
+
+5、启动rabbitmq维护插件
+rabbitmq-plugins enable rabbitmq_management
+浏览器上输入 ：http://外网ip:15672/ 就可以访问MQ管理
+
+6、添加用户dididu 密码dididu123
+rabbitmqctl add_user  dididu  dididu123
+
+7、赋予用户dididu administrator角色
+rabbitmqctl set_user_tags dididu administrator
+注：查看角色
+rabbitmqctl list_users
+
+8、使用户dididu具有/这个virtual host中所有资源的配置、写、读权限
+rabbitmqctl set_permissions -p "/" dididu ".*" ".*" ".*"
+注：列出用户dididu的权限
+rabbitmqctl list_user_permissions dididu
+
+添加virtual host test
+rabbitmqctl  add_vhost  /test

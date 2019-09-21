@@ -35,3 +35,5 @@ target
 .DS_Store
 .idea/
 target/
+
+*.tgz
