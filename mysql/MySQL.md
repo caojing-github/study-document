@@ -1,20 +1,24 @@
-创建容器  
+### MySQL登录
+```shell script
+mysql -uroot -p123456 -P3308 -h192.168.1.7
+SET PASSWORD FOR 'root'@'%' = PASSWORD('123456')
 ```
+### 设置密码
+```shell script
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123456');
+flush privileges;
+```
+创建容器  
+```shell script
 docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
 docker run --name mysql5.6.42 -p 3306:3306 -e TZ='Asia/Shanghai' -e MYSQL_ROOT_PASSWORD=123456 caojing1/mysql:5.6.42
 ```
-
 查看数据库  
 `show databases;`
 
 切换数据库  
 `use 数据库名;`
 
-MySQL登录
-```
-mysql -uroot -p123456 -P3308 -h192.168.1.7
-SET PASSWORD FOR 'root'@'%' = PASSWORD('123456')
-```
 
 LEFT JOIN 关键字会从左表 (table_name1) 那里返回所有的行，即使在右表 (table_name2) 中没有匹配的行
 RIGHT JOIN 关键字会右表 (table_name2) 那里返回所有的行，即使在左表 (table_name1) 中没有匹配的行。
@@ -176,4 +180,25 @@ show create table equity_user;
 ```sql
 alter table `equity_user` drop index `idx_id_number`;
 ``` 
+
+按日期分组
+```sql
+SELECT DATE_FORMAT( gmt_create, '%Y-%m-%d' ) AS time,
+    COUNT(id) AS total
+FROM pusher_client_info
+GROUP BY DATE_FORMAT( gmt_create, '%Y-%m-%d' )
+```
+
+[多数据源配置](https://blog.csdn.net/qq_37502106/article/details/91044952)
+
+
+
+
+
+
+
+
+---
+[日均 5 亿查询量的京东订单中心，为什么舍 MySQL 用 ES ?](https://mp.weixin.qq.com/s/Iyl8vYUpU8sFhYM_vsFTGQ)  
+《阿里巴巴Java开发手册》提出单表行数超过500万行或者单表容量超过2GB，才推荐分库分表。
 

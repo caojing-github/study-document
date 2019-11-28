@@ -21,3 +21,33 @@ jps -l
 ```shell script
 jar -xvf dididu.war
 ```
+
+## [线上故障排查](https://mp.weixin.qq.com/s/9fqrFiUJi0zzgJk0ziVIMA)  
+### CPU 飚高  
+1. 通过 top 命令找到 CPU 消耗最高的进程，并记住进程 ID。 
+```shell script
+top
+``` 
+2. 再次通过 top -Hp [进程 ID] 找到 CPU 消耗最高的线程 ID，并记住线程 ID.  
+```shell script
+top -Hp [进程 ID]
+``` 
+3. 通过 JDK 提供的 jstack 工具 dump 线程堆栈信息到指定文件中。具体命令：jstack -l [进程 ID] >jstack.log。  
+```shell script
+jstack -l [进程 ID] >jstack.log
+``` 
+4. 由于刚刚的线程 ID 是十进制的，而堆栈信息中的线程 ID 是16进制的，因此我们需要将10进制的转换成16进制的，并用这个线程 ID 在堆栈中查找。使用 printf "%x\n" [十进制数字] ，可以将10进制转换成16进制。  
+```shell script
+printf "%x\n" [十进制数字]
+```
+5. 通过刚刚转换的16进制数字从堆栈信息里找到对应的线程堆栈。就可以从该堆栈中看出端倪。 
+
+### 内存问题排查 
+####  内存溢出
+加上 -XX:+HeapDumpOnOutOfMemoryError 参数，该参数作用是：在程序内存溢出时输出 dump 文件。
+```shell script
+-XX:+HeapDumpOnOutOfMemoryError  
+```
+然后使用dump 分析工具进行分析，比如常用的`MAT，Jprofile，jvisualvm` 等工具
+####  内存没有溢出，但 GC 不健康
+...

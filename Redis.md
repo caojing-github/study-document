@@ -1,3 +1,11 @@
+连接集群，-c代表集群  
+```shell script
+./redis-cli -h 192.168.203.141 -p 8001 -c
+```
+显示出各个节点的主从信息  
+```shell script
+cluster nodes
+```
 redis数据持久化方案
 RDB 将内存中数据拷贝一份到硬盘
 AOF 将redis的写操作命令保存到日志文件中
@@ -157,6 +165,22 @@ INCR KEY_NAME
 INFO commandstats
 重置，得到全新的统计结果
 CONFIG RESETSTAT
+
+---
+[关于 Redis 的一些新特性、使用建议和最佳实践](https://mp.weixin.qq.com/s/Fwt_0QHfPhVVCVPJ3SfXjQ)
+* 禁用keys  
+通过rename-command来将一些类似的命令重命名，实现disable的效果  
+* 选用lua script  
+如果要保证多个操作的原子性，可以选择使用lua脚本  
+* config set parameter value  
+redis 2.0后提供了config set 命令来动态修改一些运行参数而不必重启redis，目前已经支持动态修改maxmemory，可以通过CONFIG GET * 查看支持动态修改的参数列表  
+* 不滥用Lua Script 
+由于Redis是单线程，在QPS很高的情况下，过多的lua脚本执行，特别是内部包含较多业务逻辑处理的情况下，会对Redis性能产生很大的影响。曾经参与过的直播业务的生产环境中，我们在Lua脚本中对送礼物触发的的积分和活动信息的有较多的逻辑处理（20行左右），导致Redis负载100%，所以在排查时Lua脚本有可能是负载较高的元凶之一。  
+* y查看内存的分配和使用大小，碎片等情况  
+info memory  
+* 查看最近几条执行较慢的命令  
+slowlog get N 
+* 通过redis-cli --bigkeys 通过采样scan元素较多的key，不会一直阻塞redis执行  
 
 
 		

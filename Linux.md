@@ -1,25 +1,38 @@
 ﻿查看操作系统信息  
-`uname -a`
-
-显示当前目录下的所有文件及文件夹包括隐藏的.和..等的详细信息
-`ls -al`
-
-设置环境变量
+```shell script
+uname -a
 ```
+显示当前目录下的所有文件及文件夹包括隐藏的.和..等的详细信息
+```shell script
+ls -al
+```
+设置环境变量
+```shell script
 sudo vi /etc/profile
 export MAVEN_HOME=/usr/local/apache-maven-3.5.0
 export PATH=$PATH:$MAVEN_HOME/bin
 ```
-
+打印环境变量
+```shell script
+echo $JAVA_HOME
+```
 Linux不重启,使配置文件生效
-`source /etc/profile 或 . /etc/profile`
-
-重启 reboot
-关机 halt 
+```shell script
+source /etc/profile 或 . /etc/profile
+```
+重启 
+```shell script
+reboot
+```
+关机
+ ```shell script
+halt
+ ``` 
 
 给目录或目录添加所有权限
-`chmod 777 文件名或目录`
-
+```shell script
+chmod 777 文件名或目录
+```
 创建centos7容器
 docker run -itd --name centos7 -e TZ='Asia/Shanghai' centos:7 /bin/bash
 

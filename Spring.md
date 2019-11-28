@@ -20,8 +20,9 @@ Spring和Junit整合
 
 @ActiveProfiles("dev")
 
+```shell script
 java -D"spring.profiles.active=test" -jar C:\Users\admin\Desktop\dididu-order-system\target\dididu-order-system.jar 
 java -jar C:\Users\admin\Desktop\dididu-order-system\target\dididu-order-system.jar spring.profiles.active=test
 java -jar C:\Users\admin\Desktop\dididu-order-system\target\dididu-order-system.jar --spring.profiles.active=test
-
 java -jar dididu-order-system.jar -Dspring.profiles.active=test
+```
