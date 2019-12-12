@@ -5,7 +5,8 @@ git remote show origin
 git stash list
 
 将本地dev分支与远程dev分之关联，之后就可以使用git pull直接更新dev分支（前提在dev分支）
-git branch --set-upstream-to=origin/dev dev	
+git branch --set-upstream-to=origin/dev dev
+git push --set-upstream origin caojing_20191120_mall
 
 Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
 git stash

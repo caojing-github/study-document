@@ -276,6 +276,11 @@ mkdir -p letter/important
 find ./ -size +100M
 ```
 
+查看端口号8089占用进程
+```shell script
+lsof -i:8089
+```
+
 
 
 
