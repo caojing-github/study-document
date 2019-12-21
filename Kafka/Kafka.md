@@ -3,7 +3,7 @@
 bin/kafka-server-start.sh -daemon config/server.properties
 ```
 
-（不推荐）前台启动,先切换到kafka目录  
+前台启动,先切换到kafka目录（不推荐）  
 ```shell script
 bin/kafka-server-start.sh config/server.properties
 ```
@@ -199,6 +199,8 @@ kafka-reassign-partitions.sh --zookeeper localhost:2181/kafka --execute --reassi
 >分区重分配后可以使用`kafka-preferred-replica-election.sh` 进行一次`优先副本`的选举动作  
 
 [17 个方面，综合对比 Kafka、RabbitMQ、RocketMQ、ActiveMQ](https://mp.weixin.qq.com/s/yLbj1sKwGv1pOxv8RtcBhw)  
+[kafka-manager](https://github.com/yahoo/kafka-manager/releases)  
+
 
 
 

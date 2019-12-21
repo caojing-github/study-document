@@ -30,3 +30,29 @@ source ~/.bash_profile
 复制文件路径  
 `Option+Command+C`  
 
+跳转目录  
+`command+shift+G` 
+
+[Homebrew从本地文件安装软件](https://blog.csdn.net/Piasy/article/details/44219237)  
+
+#brew
+列出已安装的软件
+```shell script
+brew list           
+```
+更新brew
+```shell script
+brew update     
+```
+用浏览器打开brew的官方网站
+```shell script
+brew home       
+```
+显示软件信息
+```shell script
+brew info         
+```
+显示包依赖
+```shell script
+brew deps        
+```

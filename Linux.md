@@ -28,7 +28,7 @@ reboot
  ```shell script
 halt
  ``` 
-
+#权限
 给目录或目录添加所有权限
 ```shell script
 chmod 777 文件名或目录
@@ -189,9 +189,6 @@ top
 查询某个PID进程内线程情况
 top -H -p <pid>
 
-给文件加最高权限
-chmod 775 文件名
-
 打包 
 ```shell script
 tar cvf FileName.tar DirName
@@ -280,6 +277,22 @@ find ./ -size +100M
 ```shell script
 lsof -i:8089
 ```
+#启动程序
+[linux后台启动程序脚本实例](https://www.cnblogs.com/donfaquir/p/10540816.html)  
+
+让标准输出重定向到/dev/null中（丢弃标准输出），然后错误输出由于重用了标准输出的描述符，所以错误输出也被定向到了/dev/null中，错误输出同样也被丢弃了。执行了这条命令之后，该条shell命令将不会输出任何信息到控制台，也不会有任何信息输出到文件中[参考](https://www.cnblogs.com/ultranms/p/9353157.html) 
+```shell script
+>/dev/null 2>&1
+```
+nohup command &命令形式来启动一些后台程序，示例
+```shell script
+nohup java -jar xxxx.jar &
+``` 
+不让一些执行信息输出到控制台
+```shell script
+nohup java -jar xxxx.jar >/dev/null 2>&1 &
+```
+
 
 
 
