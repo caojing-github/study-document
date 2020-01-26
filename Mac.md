@@ -56,3 +56,20 @@ brew info
 ```shell script
 brew deps        
 ```
+---
+#Mac 制作 Ubuntu 18.04 启动盘
+[安装文档](https://www.jianshu.com/p/0abdd301e0d6)  
+// hdiutil convert -format UDRW -o (.img文件输出全路径) (.iso文件的全路径)
+```shell script
+hdiutil convert -format UDRW -o /Users/caojing/Downloads/ubuntu-18-04.img /Users/caojing/Downloads/ubuntu-18.04.3-desktop-amd64.iso
+```
+```shell script
+diskutil list
+```
+```shell script
+diskutil unmountDisk /dev/disk2
+```
+```shell script
+sudo dd if=/Users/caojing/Downloads/ubuntu-18-04.img.dmg of=/dev/rdisk2 bs=1m
+```
+---
