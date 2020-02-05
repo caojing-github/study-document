@@ -200,6 +200,7 @@ tar xvf FileName.tar
 Xshell下载文件sz 文件名
 Xshell上传文件rz
 
+#ls
 ls（list）功能：列出目录内容
 ls -l 列出文件详细信息,提供简化版命令 ll
 ls -al 列出所有文件
@@ -208,6 +209,11 @@ ls -al 列出所有文件
  -l   使用详细格式列表。
  -t   用文件和目录的更改时间排序。
  -r 反向排序
+ 
+ 人类可读显示文件大小  
+ ```shell script
+ ls -lh
+```
 
 mkdir（make directoriy）功能： 创建目录
 	-p 父目录不存在情况下先生成父目录 （parents）
@@ -292,6 +298,7 @@ nohup java -jar xxxx.jar &
 ```shell script
 nohup java -jar xxxx.jar >/dev/null 2>&1 &
 ```
+
 
 
 

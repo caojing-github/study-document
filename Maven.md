@@ -18,9 +18,13 @@ mvn clean compile -U -Dmaven.test.skip=true
 mvn deploy -U -Dmaven.test.skip=true
 
 打包
+```shell script
+mvn clean package -Dmaven.test.skip=true
 mvn clean package -U -Dmaven.test.skip=true
 mvn clean package -Dmaven.test.skip=true
 mvn clean package -Pproduction 以profile=product打包
+```
+
 
 -DskipTests，不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。
 -Dmaven.test.skip=true，不执行测试用例，也不编译测试用例类。
@@ -72,7 +76,7 @@ mvn tomcat7:run -D"spring.profiles.active=test"
 $JAVA_OPTS -Dfile.encoding=UTF8  -Duser.timezone=GMT+08
 
 向私服上传jar包
-```
+```shell script
 mvn deploy:deploy-file \
 -DgroupId=com.icourt.cloud \
 -DartifactId=fiscal-tax-api \
