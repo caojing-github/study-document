@@ -51,7 +51,9 @@ whichis 命令或文件  用来查看一个命令或者文件所在的路径
 命令提示符列出目录	dir
 
 压缩文件
-tar -zcvf 文件名.tar 目录名
+```shell script
+tar -zcvf hanlp.tar /data/hanlp
+```
 解压文件
 tar -zxvf 文件名.tar
 
@@ -147,17 +149,25 @@ history | grep nginx
 cp -r /源文件或目录/目的文件或目录
 
 查看所有端口占用情况
-netstat -antu
+```shell script
+netstat -ntlp
+```
 查看端口占用PID
+```shell script
 netstat -tunlp | grep 30004
+```
 查看PID占用进程
+```shell script
 ps -aux | grep -v grep | grep 77859
+```
 
 修改host文件后重启网络服务
 service network restart
 
 将本机/opt拷贝到192.168.1.54 /目录
-scp /opt 192.168.1.54:/
+```shell script
+scp /data/hanlp.tar 172.16.69.1:/data
+```
 
 过滤查看某服务是否在开机启动服务里
 systemctl list-unit-files | grep 服务名
@@ -165,9 +175,6 @@ systemctl list-unit-files | grep mysql
 
 修改启动服务后，重新加载配置文件
 systemctl daemon-reload
-
-查看所有端口占用情况
-netstat -ntlp
 
 Centos7服务目录/usr/lib/systemd/system
 
