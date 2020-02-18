@@ -1,3 +1,8 @@
+#快捷键  
+[选择文本](https://support.apple.com/zh-cn/guide/voiceover/mchlp2741/8/mac/10.13)  
+选择从键盘光标到行开头或行结尾之间的文本
+`Shift-Command-右箭头键：按下 或 Shift-Command-左箭头键`  
+
 剪切性粘贴
 `OPTION+CMD+V`
 
@@ -78,3 +83,5 @@ eraseDisk 选项用于擦除整个磁盘并重新格式化
 ```shell script
 diskutil eraseDisk ExFAT 15110164590 disk2
 ```
+
+
