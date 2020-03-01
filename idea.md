@@ -41,3 +41,9 @@ public static void main(String[] args) {
 
 [edit template variables](http://www.jetbrains.com/help/idea/edit-template-variables-dialog.html#predefined_functions)  
 
+[idea设置git仓库](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#)      
+```properties
+https://github.com/caojing-github/idea.git
+access tokens：da063e1fa17caf9f4e152faf79e0e19310bc9772
+```
+

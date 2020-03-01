@@ -72,7 +72,11 @@ ps aux | grep -i 进程名
 jps	 查看java进程id
 
 看整个服务器的实际物理内存
+```shell script
 dmidecode -t memory | grep Size
+```
+
+[查看linux系统CPU和内存命令](https://jingyan.baidu.com/article/fdbd4277b16d1cb89e3f48e4.html)  
 
 在“一般模式”下，输入“:wq”，退出编辑
 :q! 放弃修改
@@ -154,7 +158,7 @@ netstat -ntlp
 ```
 查看端口占用PID
 ```shell script
-netstat -tunlp | grep 30004
+netstat -tunlp | grep 22
 ```
 查看PID占用进程
 ```shell script
@@ -240,18 +244,6 @@ less功能：分页显示文件内容，操作更详细。
 	语法：less [参数] 文件
 	-m  显示类似more命令的百分比
 	-N  显示每行的行号
-vim	操作
-	空格键：前进一页 或 page down
-	b：后退一页 或 page up
-	d：前进半页
-	u：后退半页
-	回车键：前进一行 或 方向键向下
-	y：后退一行	或 方向键向上
-	/字符串：向下搜索
-	?字符串：向上搜索
-	v：进入vim编辑器
-	左右方向键：相当于水平滚动条
-	q：退出
 
 tail功能： 用于显示指定文件末尾内容
 	格式：tail[必要参数][选择参数][文件]
@@ -297,6 +289,12 @@ lsof -i:8089
 ```shell script
 >/dev/null 2>&1
 ```
+
+标准输出和错误输出输出到同一个地方  
+```shell script
+2>&1
+```
+
 nohup command &命令形式来启动一些后台程序，示例
 ```shell script
 nohup java -jar xxxx.jar &
@@ -304,6 +302,19 @@ nohup java -jar xxxx.jar &
 不让一些执行信息输出到控制台
 ```shell script
 nohup java -jar xxxx.jar >/dev/null 2>&1 &
+```
+
+杀死http.jar包进程命令  
+```shell script
+jps -l | grep http.jar | awk '{print $2}' | xargs kill
+```
+
+#安装软件  
+[RPM安装](https://blog.csdn.net/sunkun2013/article/details/73478580)  
+[Linux安装软件包的三种方法](https://blog.51cto.com/zero01/1972444)  
+安装 example.rpm 包并在安装过程中显示正在安装的文件信息及安装进度  
+```shell script
+rpm -ivh example.rpm
 ```
 
 

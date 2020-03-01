@@ -81,7 +81,7 @@ sudo dd if=/Users/caojing/Downloads/ubuntu-18-04.img.dmg of=/dev/rdisk2 bs=1m
 [磁盘管理工具 diskutil 介绍](https://www.jianshu.com/p/6a1f365617ad)   
 eraseDisk 选项用于擦除整个磁盘并重新格式化  
 ```shell script
-diskutil eraseDisk ExFAT 15110164590 disk2
+diskutil eraseDisk ExFAT 15110164590 disk2  
 ```
 
 

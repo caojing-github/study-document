@@ -1,9 +1,0 @@
-﻿docker pull jenkins/jenkins:lts
-docker run -itd --name jenkins -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 -e TZ='Asia/Shanghai' jenkins/jenkins:lts
-
-Jenkins新建视图出错，解决方法在/var/lib/jenkins下修改jenkins.model.JenkinsLocationConfiguration.xml文件，将
-jenkinsUrl那行注掉即可
-
-
-
-

@@ -1,17 +1,27 @@
 安装
+```shell script
 yum install docker
+```
 查看版本号
+```shell script
 docker -v
+```
 开机启动
+```shell script
 systemctl enable docker.service
+```
 启动
+```shell script
 systemctl start docker.service
+```
 停止
+```shell script
 systemctl stop docker.service
+```
 重启
+```shell script
 systemctl restart docker.service
-查看版本号
-docker -v
+```
 查看docker状态
 systemctl status docker.service
 查看docker概要信息
@@ -83,13 +93,21 @@ docker rmi `docker images -q`
 	--rm: 那么当容器运行停止时会自动删除容器以及容器所挂载的volume
 
 创建容器，（前端启动，退出就会关闭容器）用版本为7（如果centos:7是centos表示最新的）centos的镜像centos创建了名为caojing的容器
+```shell script
 docker run -it --name caojing centos:7 /bin/bash
+```
 创建容器，后端启动（不登录进容器,-e TZ='Asia/Shanghai'表示时区）
+```shell script
 docker run -itd --name centos7 -e TZ='Asia/Shanghai' centos:7 /bin/bash
+```
 查看正在运行的容器
+```shell script
 docker ps
+```
 查看所有容器
+```shell script
 docker ps -a
+```
 查看最后一个运行的容器
 docker ps -l
 登录容器(exit后不会关闭容器)
@@ -166,8 +184,7 @@ docker run --name redis -v /data:/data -p 6379:6379 -e TZ='Asia/Shanghai' -e TZ=
 注：https://hub.docker.com/_/redis/
 docker run --name mysql5.6.42 -v /var/lib/mysql:/var/lib/mysql -p 3306:3306 -e TZ='Asia/Shanghai' -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6.42
 注:	https://hub.docker.com/_/mysql/
-docker pull jenkins/jenkins:lts
-docker run -itd --name jenkins -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 -e TZ='Asia/Shanghai' jenkins/jenkins:lts
+
 docker run --name sonarqube --link mysql5.6.42 -v /opt/sonarqube/data:/opt/sonarqube/data -e TZ='Asia/Shanghai' -e SONARQUBE_JDBC_USERNAME=root -e SONARQUBE_JDBC_PASSWORD=123456 -e SONARQUBE_JDBC_URL="jdbc:mysql://mysql5.6.42:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false" -p 9000:9000 -d sonarqube
 docker run --name zookeeper -v /dockerMapping/zookeeper/data:/data -v /dockerMapping/zookeeper/datalog:/datalog -v /dockerMapping/zookeeper/logs:/logs -e TZ='Asia/Shanghai' --restart always -d zookeeper
 
@@ -196,6 +213,9 @@ Mirror是一种代理中转服务，我们(比如daocloud)提供的Mirror服务�
 在使用Private Registry时，需要在Docker Pull 或Dockerfile中直接键入Private Registry 的地址，通常这样会导致与 Private Registry 的绑定，缺乏灵活性。
 使用 Mirror 服务，只需要在 Docker 守护进程（Daemon）的配置文件中加入 Mirror 参数，即可在全局范围内透明的访问官方的 Docker Hub，避免了对 Dockerfile 镜像引用来源的修改。
 简单来说，Mirror类似CDN，本质是官方的cache；Private Registry类似私服，跟官方没什么关系。对用户来说，由于用户是要拖docker hub上的image，对应的是Mirror。yum/apt-get的Mirror又有点不一样，它其实是把官方的库文件整个拖到自己的服务器上做镜像，并定时与官方做同步；而Docker Mirror只会缓存曾经使用过的image。
+
+
+# 常见问题解决  
 
 
 
