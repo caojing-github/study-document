@@ -29,40 +29,63 @@ git add .
 git add -f App.class
 
 检查出哪个规则忽略了App.class文件
+```shell script
 git check-ignore -v App.class
+```
 
 提交加注释"fixed some bugs"
+```shell script
 git commit -m “fixed some bugs”
+```
 
 查看远程仓库的名称
+```shell script
 git remote
-
+```
 显示远程仓库更详细的信息
+```shell script
 git remote -v
+```
 
 删除已关联的远程仓库
+```shell script
 git remote rm origin 等价于  git remote remove origin
+```
 
 本地仓库关联远程仓库
-git remote add origin git@git.hualala.com:CaiDanMao/caidanmao-service-platform.git
+```shell script
+git remote add origin https://code.alphalawyer.cn/rd/icourt-case-parse.git
+```
 
 将所有远程主机的更新，全部取回本地
+```shell script
 git fetch
+```
 
 将dev远程分支的更新取回本地
+```shell script
 git fetch dev
+```
 
 更新远程分支列表
+```shell script
 git remote update origin --prune
+```
 
 克隆远程分支
+```shell script
 git clone git@git.hualala.com:CaiDanMao/caidanmao-api-portal.git
+```
 
 查看远程分支
+```shell script
 git branch -a
+```
 
 查看本地分支
+```shell script
 git branch
+```
 
 该分支与dev分支的差别
 git diff dev	退出比较模式: q
@@ -176,13 +199,19 @@ git push origin :refs/tags/release-0.5.0
 	推送本地分支git push origin develop
 
 显示最后一次提交日志
-git log -1	
+```shell script
+git log -1
+```
 	
 显示日志
-git log	
+```shell script
+git log
+```
 
 显示精简版日志
+```shell script
 git log --pretty=oneline
+```
 
 显示每次命令的日志
 git reflog
@@ -191,7 +220,9 @@ git reflog
 git log --pretty=oneline --abbrev-commit
 
 回退到当前版本
+```shell script
 git reset --hard HEAD
+```
 回退到上一个版本
 git reset --hard HEAD^
 回退到某个版本3628164（3628164是版本号，版本号没必要写全，前几位就可以了，Git会自动去找。

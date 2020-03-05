@@ -44,6 +44,7 @@ public static void main(String[] args) {
 [idea设置git仓库](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#)      
 ```properties
 https://github.com/caojing-github/idea.git
-access tokens：da063e1fa17caf9f4e152faf79e0e19310bc9772
+token
+16986525cb88eb5896a4308919eaed21f33dd6d4
 ```
 
