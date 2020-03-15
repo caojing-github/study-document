@@ -80,7 +80,6 @@ dmidecode -t memory | grep Size
 
 在“一般模式”下，输入“:wq”，退出编辑
 :q! 放弃修改
-df -h 查看磁盘信息
 
 ln -s 源文件/目录名  符号链接名，例如：
 ln -s /usr/bin/python3.3 /usr/bin/python
@@ -88,12 +87,24 @@ ln -s /usr/bin/python3.3 /usr/bin/python
 
 创建文件	vi 文件名	进入插入模式后，保存
 
-删除文件	rm -rf 文件名
-删除当前目录下的文件	rm -rf *
+删除文件	
+```shell script
+rm -rf 文件名
+```
 
-查找文件  find / -name mongodb
+删除当前目录下的文件	
+```shell script
+rm -rf *
+```
+
+查找文件  
+```shell script
+find / -name mongodb
+```
 或
+```shell script
 find . -type f -size +50M
+```
 
 查找某个路径下文件
 find .jenkins/jobs/ -name "*1.0.0-SNAPSHOT.war"
@@ -105,11 +116,6 @@ find / -name jenkins | xargs grep "/usr/java/jdk1.8.0_181-amd64/bin" -n
 
 查找并替换
 find -name 'dididu_order_local.sh' | xargs perl -pi -e 's| /data|/home/server|g'
-
-//查看当前目录下各个文件及目录占用空间大小
-du -sh *
-
-查看磁盘信息 df -h
 
 搜索 /u01/app/oracle/oradata/prod/ 下，超过500M大小的文件
 find /u01/app/oracle/oradata/prod/  -type f -size +500M
@@ -147,7 +153,9 @@ ssh root@192.168.1.123
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.50
 
 过滤命令
+```shell script
 history | grep nginx
+```
 
 按递归方式保留原目录结构复制文件
 cp -r /源文件或目录/目的文件或目录
@@ -159,6 +167,10 @@ netstat -ntlp
 查看端口占用PID
 ```shell script
 netstat -tunlp | grep 22
+```
+测试端口连接  
+```shell script
+telnet 172.16.71.103 7078
 ```
 查看PID占用进程
 ```shell script
@@ -309,6 +321,16 @@ nohup java -jar xxxx.jar >/dev/null 2>&1 &
 jps -l | grep http.jar | awk '{print $2}' | xargs kill
 ```
 
+#磁盘 
+查看当前目录下各个文件及目录占用空间大小
+```shell script
+du -sh *
+```
+查看磁盘信息 
+```shell script
+df -h
+```
+
 #安装软件  
 [RPM安装](https://blog.csdn.net/sunkun2013/article/details/73478580)  
 [Linux安装软件包的三种方法](https://blog.51cto.com/zero01/1972444)  
@@ -316,6 +338,8 @@ jps -l | grep http.jar | awk '{print $2}' | xargs kill
 ```shell script
 rpm -ivh example.rpm
 ```
+
+[统计日志中出现过的ip次数](https://blog.csdn.net/jirryzhang/article/details/82467554) 
 
 
 
