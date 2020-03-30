@@ -1,4 +1,4 @@
-配置远程debug
+#配置远程debug
 ```properties
 JPDA_OPTS="-agentlib:jdwp=transport=dt_socket,address=18082,server=y,suspend=n"
 ```
@@ -6,7 +6,12 @@ dididu-order-system[利用Sping profile分环境配置]
 > eclipse 中启动tomcat。项目右键 run as –> run configuration–>Arguments–> VM arguments中添加
 -Dspring.profiles.active="dev"
 
-dump线程信息
+#获取java应用堆栈信息  
+```shell script
+kill -3 PID
+```
+>(1)如果项目通过Tomcat进行发布（普通的web项目），则对应的堆栈信息会打印在catalina.out文件中。  
+>(2)如果项目是基于SpringBoot并且使用nohup java -jar xxx.jar & 命令运行，则java堆栈信息会在jar包所在的nohup.out文件中。  
 ```shell script
 jstack 进程pid > /Users/icourt/Desktop/dump
 ```
@@ -15,6 +20,11 @@ jstack 进程pid > /Users/icourt/Desktop/dump
 ```shell script
 jps -l
 ```
+查看该进程的所有线程信息
+```shell script
+top -H -p pid
+```
+
 [设置多个JDK环境变量](https://www.cnblogs.com/lukefan/archive/2019/02/19/10400427.html)
 
 解压dididu war包

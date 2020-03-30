@@ -158,7 +158,7 @@ history | grep nginx
 ```
 
 按递归方式保留原目录结构复制文件
-cp -r /源文件或目录/目的文件或目录
+cp -r /源文件或目录 /目的文件或目录
 
 查看所有端口占用情况
 ```shell script
@@ -329,6 +329,16 @@ du -sh *
 查看磁盘信息 
 ```shell script
 df -h
+```
+
+#CPU 
+查看物理CPU个数  
+```shell script
+cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l
+``` 
+查看每个物理CPU中core的个数(即核数)  
+```shell script
+cat /proc/cpuinfo| grep "cpu cores"| uniq
 ```
 
 #安装软件  
