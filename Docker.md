@@ -52,6 +52,7 @@ docker search centos7
 拉去centos7镜像
 docker pull centos:7
 
+#添加镜像仓库
 添加USDC镜像仓库
 	https://lug.ustc.edu.cn/wiki/mirrors/help/docker
 	1、vi /etc/docker/daemon.json
@@ -201,6 +202,13 @@ docker logs -f -t --since="2017-05-31" --tail=10 容器名
 -tail=10 : 查看最后的10条日志。
 
 docker run -it --rm -p 8080:8080 tomcat:8.5
+
+#DockerFile  
+FROM：jre运行环境，属于项目的依赖环境，没有这个运行不了。
+MAINTAINER：写开发者姓名及邮箱
+ADD：打包后的项目地址及自定义名称
+EXPOSE：项目的端口号
+ENTRYPOINT：不解释了照着写，就是开始运行的意思。
 
 
 

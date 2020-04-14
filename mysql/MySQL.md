@@ -14,11 +14,16 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
 docker run --name mysql5.6.42 -p 3306:3306 -e TZ='Asia/Shanghai' -e MYSQL_ROOT_PASSWORD=123456 caojing1/mysql:5.6.42
 ```
 查看数据库  
-`show databases;`
+```sql
+show databases;
+```
 
 切换数据库  
-`use 数据库名;`
+```sql
+use 数据库名;
+```
 
+`SQL_NO_CACHE`关键字来禁止缓存查询结果
 
 LEFT JOIN 关键字会从左表 (table_name1) 那里返回所有的行，即使在右表 (table_name2) 中没有匹配的行
 RIGHT JOIN 关键字会右表 (table_name2) 那里返回所有的行，即使在左表 (table_name1) 中没有匹配的行。
@@ -149,18 +154,11 @@ SELECT  (SELECT user_id from t_user WHERE user_mail = #{userMail}),
 		  now()
 FROM DUAL where EXISTS (SELECT 1 from t_user WHERE user_mail = #{userMail})
 
-多数据源
-方式一
-在service层具体调用dao接口进行数据库操作前加入：
-DataSourceTypeManager.set(DataSources.MASTER);或
-DataSourceTypeManager.set(DataSources.SLAVE);
-
-方式二
-在DataSourceInterceptor定义切面
-
 数据库表中已有重复记录，添加唯一索引（tableA为表名、idx_col1_u为索引名，col1为索引列）
+```sql
 set old_alter_table = 1;
 ALTER IGNORE TABLE tableA ADD UNIQUE INDEX idx_col1_u (col1)
+```
 
 显示哪些线程正在运行
 ```sql
@@ -171,7 +169,7 @@ relaylog 中继日志
 
 刚安装完后 mysql 的配置文件在/usr/share/mysql/my-default.cnf 拷贝到 /etc/my.cnf
 
--- 查询表的DDL  
+查询表的DDL  
 ```sql
 show create table equity_user;
 ```

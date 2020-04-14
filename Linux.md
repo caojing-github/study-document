@@ -66,8 +66,14 @@ http://build2.hualala.com/view/%E5%BD%A9%E8%9B%8B%E7%8C%AB/
 find / -name httpd.conf
 
 两种不同风格查看进程的方法
+```shell script
 ps -ef  grep -i 进程名
 ps aux | grep -i 进程名
+```
+查看PID进程下线程  
+```shell script
+ps -T -p PID
+```
 
 jps	 查看java进程id
 

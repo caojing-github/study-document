@@ -13,7 +13,11 @@ kill -3 PID
 >(1)如果项目通过Tomcat进行发布（普通的web项目），则对应的堆栈信息会打印在catalina.out文件中。  
 >(2)如果项目是基于SpringBoot并且使用nohup java -jar xxx.jar & 命令运行，则java堆栈信息会在jar包所在的nohup.out文件中。  
 ```shell script
-jstack 进程pid > /Users/icourt/Desktop/dump
+jstack -l 进程pid > /Users/icourt/Desktop/dump
+```
+堆转储文件
+```shell script
+jmap -dump:format=b,file=filename 进程pid
 ```
 
 查看java进程信息
