@@ -186,9 +186,13 @@ ps -aux | grep -v grep | grep 77859
 修改host文件后重启网络服务
 service network restart
 
-将本机/opt拷贝到192.168.1.54 /目录
+拷贝文件  
 ```shell script
 scp /data/hanlp.tar 172.16.69.1:/data
+```
+拷贝目录  
+```shell script
+scp -r /data/app/ 172.16.69.13:/data
 ```
 
 过滤查看某服务是否在开机启动服务里
