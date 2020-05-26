@@ -152,12 +152,22 @@ sed -n 1826,1900p /usr/local/tomcat6/logs/catalina.out
 查找并替换
 find -name '要查找的文件名' | xargs perl -pi -e 's|被替换的字符串|替换后的字符串|g'
 
+创建SSH Key
+```shell script
+ssh-keygen -t rsa -C "caojing0229@foxmail.com"
+```
 通过终端以root身份连接linux服务器192.168.1.123
+```shell script
 ssh root@192.168.1.123
-
+```
 将本机公钥加入192.168.1.50主机,让192.168.1.50无秘钥访问本机
+```shell script
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.50
-
+```
+ssh使用pem文件登录
+```shell script
+ssh -p 2222 caojing@192.168.245.252 -i /Users/caojing/Downloads/caojing-jumpserver.pem
+```
 过滤命令
 ```shell script
 history | grep nginx
