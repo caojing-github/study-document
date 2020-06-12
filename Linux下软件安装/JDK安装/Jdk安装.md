@@ -10,6 +10,15 @@ rpm -e --nodeps java-1.6.0-openjdk-1.6.0.35-1.13.7.1.el6_6.i686
 rpm -e --nodeps java-1.7.0-openjdk-1.7.0.79-2.5.5.4.el6.i686
 ```
 
+通过rpm安装jdk
+```shell script
+rpm -ivh jdk-14.0.1_linux-x64_bin.rpm
+```
+查看rpm安装的jdk位置
+```shell script
+rpm -ql jdk-14.0.1-14.0.1-ga.x86_64
+```
+
 将jdk压缩包进行解压
 tar  -zxvf   jdk-7u71-linux-i586.tar.gz
  

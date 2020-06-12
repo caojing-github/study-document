@@ -286,6 +286,7 @@ mv(move) 功能：移动或更名现有的文件或目录。
 	语法：mv  [源文件或目录]	[目标文件或目录]
 	-f或--force 　若目标文件或目录与现有的文件或目录重复，则直接覆盖现有的文件或目录。
 
+#rpm
 rpm [参数] [软件]
 	-v 　显示指令执行过程。
 	-h或--hash 　套件安装时列出标记。
@@ -295,11 +296,28 @@ rpm [参数] [软件]
 	-U<套件档>或--upgrade<套件档>   升级指定的套件档。 
 	-e<套件档>或--erase<套件档> 　删除指定的套件。
 	--nodeps 　不验证套件档的相互关联性
-	常用
-		安装：rpm -ivh rpm文件【安装】 
-		升级：rpm -Uvh rpm文件【更新】
-		删除：rpm -e --nodeps 软件名
-		查看：rpm -qa
+
+安装：
+```shell script
+rpm -ivh rpm文件
+```
+升级
+```shell script
+rpm -Uvh rpm文件
+```
+删除
+```shell script
+rpm -e --nodeps 软件名
+```
+[](https://www.cnblogs.com/macrored/p/11757954.html)
+列出所有安装的Jenkins
+```shell script
+rpm -qa | grep jenkins
+```
+rpm -ql 列出软件包安装的文件
+```shell script
+rpm -ql jenkins
+```
 
 使用 -p 参数。如果 mkdir 找不到父目录，那么这个参数会首先帮助创建父目录
 如创建名为 letter 的目录，在它的目录下包含有子目录 important。那么语法会像这样子
