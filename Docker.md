@@ -165,7 +165,14 @@ docker load < /root/名称.tar.gz
 示例:
 	docker load < /root/tomcat7.tar.gz
 将host的8888端口映射到容器的8080端口，使用-p参数做映射
-示例：docker run -dit --name tomcat2 -p 8888:8080 mytomcat7 /bin/bash
+示例：
+```shell script
+docker run -dit --name tomcat2 -p 8888:8080 mytomcat7 /bin/bash
+```
+使用jdk12发现若映射到宿主机的端口不是容器内的端口可能映射不上（使用telnet 172.16.69.3 8081）可以尝试下面映射方法
+```shell script
+docker run -itd --rm -v /data:/data -v /etc/hosts:/etc/hosts -p 172.16.69.3:9099:8080 -e SPRING_PROFILES_ACTIVE=prd ds2:5000/law_parser:33
+```
 
 启动全部容器
 docker start `docker ps -a -q`
@@ -193,13 +200,15 @@ docker run --name zookeeper -v /dockerMapping/zookeeper/data:/data -v /dockerMap
 -v dockerMapping/$CONTAINER_NAME/要映射的目录:要映射的目录
 
 实时查看docker容器日志
+```shell script
 docker logs -f -t --since="2017-05-31" --tail=10 容器名
+docker logs -f -t --tail 20 容器名
+```
 示例 docker logs -f -t --tail 20 sonarqube
-
 --since : 此参数指定了输出日志开始日期，即只输出指定日期之后的日志。
 -f : 查看实时日志
 -t : 查看日志产生的日期
--tail=10 : 查看最后的10条日志。
+-tail=10 : 查看最后的10条日志
 
 docker run -it --rm -p 8080:8080 tomcat:8.5
 
