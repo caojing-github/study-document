@@ -23,9 +23,33 @@ systemctl stop docker.service
 systemctl restart docker.service
 ```
 查看docker状态
+```shell script
 systemctl status docker.service
+```
 查看docker概要信息
+```shell script
 docker info
+```
+
+查看docker现在硬盘状态
+```shell script
+docker system df
+```
+
+删除所有停止的容器
+```shell script
+docker system prune
+```
+
+删除未使用的映像
+```shell script
+docker image prune
+```
+
+删除任何容器未引用的所有映像
+```shell script
+docker image prune -a
+```
 查看docker帮助文档
 docker --help
 列出镜像
@@ -52,7 +76,7 @@ docker search centos7
 拉去centos7镜像
 docker pull centos:7
 
-#添加镜像仓库
+# 添加镜像仓库
 添加USDC镜像仓库
 	https://lug.ustc.edu.cn/wiki/mirrors/help/docker
 	1、vi /etc/docker/daemon.json
@@ -205,6 +229,7 @@ docker logs -f -t --since="2017-05-31" --tail=10 容器名
 docker logs -f -t --tail 20 容器名
 ```
 示例 docker logs -f -t --tail 20 sonarqube
+
 --since : 此参数指定了输出日志开始日期，即只输出指定日期之后的日志。
 -f : 查看实时日志
 -t : 查看日志产生的日期
@@ -212,12 +237,17 @@ docker logs -f -t --tail 20 容器名
 
 docker run -it --rm -p 8080:8080 tomcat:8.5
 
-#DockerFile  
+# DockerFile  
 FROM：jre运行环境，属于项目的依赖环境，没有这个运行不了。
 MAINTAINER：写开发者姓名及邮箱
 ADD：打包后的项目地址及自定义名称
 EXPOSE：项目的端口号
 ENTRYPOINT：不解释了照着写，就是开始运行的意思。
+
+# 安装私服
+```shell script
+docker run --name registry -d --restart=always -privileged=true -p 5000:5000 -v /datasource/caojing/registry/v2/repositories:/var/lib/registry registry
+```
 
 
 
@@ -233,7 +263,7 @@ Mirror是一种代理中转服务，我们(比如daocloud)提供的Mirror服务�
 
 
 # 常见问题解决  
-
+[docker no space left on device](https://blog.csdn.net/QQ401476683/article/details/82848757)
 
 
 

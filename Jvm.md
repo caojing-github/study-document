@@ -1,4 +1,4 @@
-#配置远程debug
+# 配置远程debug
 ```properties
 JPDA_OPTS="-agentlib:jdwp=transport=dt_socket,address=18082,server=y,suspend=n"
 ```
@@ -6,7 +6,7 @@ dididu-order-system[利用Sping profile分环境配置]
 > eclipse 中启动tomcat。项目右键 run as –> run configuration–>Arguments–> VM arguments中添加
 -Dspring.profiles.active="dev"
 
-#获取java应用堆栈信息  
+# 获取java应用堆栈信息  
 ```shell script
 kill -3 PID
 ```
@@ -58,10 +58,36 @@ printf "%x\n" [十进制数字]
 
 ### 内存问题排查 
 ####  内存溢出
-加上 -XX:+HeapDumpOnOutOfMemoryError 参数，该参数作用是：在程序内存溢出时输出 dump 文件。
+-XX:+HeapDumpOnOutOfMemoryError 该参数作用是：在程序内存溢出时输出dump文件。
+-XX:HeapDumpPath 该参数作用是：指定程序内存溢出输出dump文件路径
 ```shell script
--XX:+HeapDumpOnOutOfMemoryError  
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=D:\heapdump
 ```
 然后使用dump 分析工具进行分析，比如常用的`MAT，Jprofile，jvisualvm` 等工具
 ####  内存没有溢出，但 GC 不健康
 ...
+
+### hprof
+#### 分析程序中哪块代码出现延时故障
+```shell script
+-agentlib:hprof=cpu=times,interval=10
+```
+
+### pidstat
+#### 性能排查
+-u:代表对cpu使用率的监控
+参数1 3代表每秒采样一次，一共三次
+-t:将监控级别细化到线程
+```shell script
+pidstat -p 17468 1 3 -u -t
+```
+结果中TID是线程ID（十进制），%usr表示用户线程使用率
+```shell script
+jstack -l 843 > /data/jstack.out
+```
+上面jstack.out中NID是TID的16进制表示
+10进制855转换为16进制
+```shell script
+printf "%x\n" 855
+```

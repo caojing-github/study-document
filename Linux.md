@@ -1,4 +1,8 @@
-﻿查看操作系统信息  
+﻿查看当前目录大小
+```shell script
+du -h --max-depth=1 ./
+```
+查看操作系统信息  
 ```shell script
 uname -a
 ```
@@ -205,40 +209,76 @@ scp /data/hanlp.tar 172.16.69.1:/data
 scp -r /data/app/ 172.16.69.13:/data
 ```
 
+# Systemctl
+Centos7服务目录
+```shell script
+/usr/lib/systemd/system
+```
+springboot服务示例文件：项目`systemctl`文件夹下`java-institute.service`)，springboot服务Systemctl文件创建后移到`/usr/lib/systemd/system`目录，
+执行下面命令使生效
+```shell script
+systemctl daemon-reload
+```
+[把spring-boot项目配置为Linux systemd服务，并注册自启动](https://blog.csdn.net/ClementAD/article/details/53392360)
+
 过滤查看某服务是否在开机启动服务里
+```shell script
 systemctl list-unit-files | grep 服务名
 systemctl list-unit-files | grep mysql
-
+```
 修改启动服务后，重新加载配置文件
+```shell script
 systemctl daemon-reload
-
-Centos7服务目录/usr/lib/systemd/system
-
-启动一个服务：systemctl start firewalld.service
-关闭一个服务：systemctl stop firewalld.service
-重启一个服务：systemctl restart firewalld.service
-显示一个服务的状态：systemctl status firewalld.service
-在开机时启用一个服务：systemctl enable firewalld.service
-在开机时禁用一个服务：systemctl disable firewalld.service
-查看服务是否开机启动：systemctl is-enabled firewalld.service;echo $?
-查看已启动的服务列表：systemctl list-unit-files|grep enabled
-
-systemctl daemon-reload
-systemctl start redis-server.service
-systemctl enable redis-server.service
+```
+Centos7服务目录
+```shell script
+/usr/lib/systemd/system
+```
+启动一个服务：
+```shell script
+systemctl start firewalld.service
+```
+关闭一个服务：
+```shell script
+systemctl stop firewalld.service
+```
+重启一个服务：
+```shell script
+systemctl restart firewalld.service
+```
+显示一个服务的状态：
+```shell script
+systemctl status firewalld.service
+```
+在开机时启用一个服务：
+```shell script
+systemctl enable firewalld.service
+```
+在开机时禁用一个服务：
+```shell script
+systemctl disable firewalld.service
+```
+查看服务是否开机启动：
+```shell script
+systemctl is-enabled firewalld.service;echo $?
+```
+查看已启动的服务列表：
+```shell script
+systemctl list-unit-files|grep enabled
+```
 
 查看当前cpu的情况
 top
 查询某个PID进程内线程情况
 top -H -p <pid>
 
-打包 
+压缩 a.c文件为test.tar.gz   
 ```shell script
-tar cvf FileName.tar DirName
+tar -czvf test.tar.gz a.c
 ```
-解包
+解压
 ```shell script
-tar xvf FileName.tar
+tar -xzvf test.tar.gz
 ```
 Xshell下载文件sz 文件名
 Xshell上传文件rz
@@ -264,6 +304,7 @@ mkdir（make directoriy）功能： 创建目录
  
 cat（catenate）功能：显示文本文件内容
 
+#more
 more功能：分页显示文件内容，还支持直接跳转行等功能。
 	语法：more file 
 	操作

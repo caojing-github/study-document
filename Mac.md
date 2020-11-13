@@ -28,6 +28,16 @@ export PATH=$PATH:$MAVEN_HOME/bin
 ```shell script
 source ~/.bash_profile
 ```
+[MAC 添加环境变量](https://juejin.im/post/5da9da9d6fb9a04e0762e2a1)
+若环境变量不生效，安装了zsh在 ~/.zshrc 中添加
+```shell script
+source ~/.bash_profile
+```
+然后在外面执行
+```shell script
+source ~/.bash_profile 或 source ~/.zshrc
+```
+
 [安装SSH](https://blog.csdn.net/yamaxifeng_132/article/details/54932873)
 
 [安装mysql5.7](https://www.cnblogs.com/kimbo/p/8724595.html)  

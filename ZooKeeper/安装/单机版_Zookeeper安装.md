@@ -20,17 +20,24 @@
 `dataDir=/usr/local/zookeeper-3.4.6/data` （新建的data目录所在的位置）
 
 7. 进入bin目录启动zookeeper  
-`pwd`  
-`/usr/local/zookeeper-3.4.6/bin`  
-`./zkServer.sh start`
+```shell script
+pwd
+/usr/local/zookeeper-3.4.6/bin  
+./zkServer.sh start
+```
 
-查看状态  
-`./zkServer.sh status`  
+查看状态
+```shell script
+./zkServer.sh status 
+```
 注意：zookeeper使用**2181**端口号，为了能正常使用zookeeper，我们需要打开**2181**端口号
-或者关闭防火墙 `service iptables stop`
+或者关闭防火墙
+```shell script
+service iptables stop
+```
 
 附：设置环境变量
-```
+```shell script
 export ZOOKEEPER_HOME=/Users/icourt/Downloads/zookeeper-3.4.6
 export PATH=$PATH:$ZOOKEEPER_HOME/bin
 ```

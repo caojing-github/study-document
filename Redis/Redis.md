@@ -2,6 +2,10 @@
 ```shell script
 ./redis-cli -h 192.168.203.141 -p 8001 -c
 ```
+有密码连接
+```shell script
+redis-cli -h 172.16.85.111 -p 6379 -a ENvcxYwhGkWF8XrM
+```
 显示出各个节点的主从信息  
 ```shell script
 cluster nodes

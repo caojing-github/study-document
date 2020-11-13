@@ -22,6 +22,10 @@ show databases;
 ```sql
 use 数据库名;
 ```
+查看所有连接
+```sql
+show full processlist;
+```
 
 `SQL_NO_CACHE`关键字来禁止缓存查询结果
 

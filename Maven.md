@@ -87,6 +87,12 @@ mvn deploy:deploy-file \
 -DrepositoryId=icourt-snapshot
 ```
 
+命令可以查看settings.xml文件的读取顺序
+```shell script
+mvn -X
+```
+
+
 
 
 

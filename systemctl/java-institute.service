@@ -1,0 +1,15 @@
+[Unit]
+Description=analysis institute Web Application Container
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+PIDFile=/var/run/institute.pid
+ExecStart=/usr/bin/java -jar -Dspring.profiles.active=online /data/icourt/institute-ai-web.jar -Xms3096M -Xmx3096M -server -XX:+UseParallelGC
+
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

@@ -6,7 +6,7 @@ docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 -e T
 Jenkins新建视图出错，解决方法在/var/lib/jenkins下修改jenkins.model.JenkinsLocationConfiguration.xml文件，将
 jenkinsUrl那行注掉即可
 
-#不推荐docker安装，问题可能比较多，也没有需求  
+# 不推荐docker安装，问题可能比较多，也没有需求  
 [官网安装链接](https://pkg.jenkins.io/redhat-stable/)  
 
 启动jenkins  
@@ -46,7 +46,7 @@ docker ps | grep 9090 | awk '{print $1}' | xargs docker stop;
 docker run -it --rm -v /etc/hosts:/etc/hosts -v /data:/data -p 9090:8080 -e SPRING_PROFILES_ACTIVE=pro -e HANLP_ROOT=/data/hanlp ds2:5000/judgment-parse:$BUILD_NUMBER;
 ```
 
-#启动war包  
+# 启动war包  
 ```shell script
 nohup java -jar jenkins.war --httpPort=8081 > jenkins.log 2>&1 &
 ```
