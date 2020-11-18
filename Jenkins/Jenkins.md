@@ -16,7 +16,7 @@ sudo service jenkins start
 重启jenkins 
 ```shell script
 sudo service jenkins restart 
-```
+
 # 解决jenkins下载插件比较慢
 [相关链接](https://blog.csdn.net/qq_39653459/article/details/103585084?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)  
 更换下面
