@@ -32,7 +32,16 @@ reboot
  ```shell script
 halt
  ``` 
-#权限
+
+[](https://www.cnblogs.com/jiangzhaowei/p/5451173.html)
+根据文件前缀文件
+```shell script
+find ./ -name 'live*' -exec rm -rf {} \;
+find ./ -regex '.*上传时间.*-数据源与es数据对比.xlsx' -exec rm -rf {} \;
+find ./ -regex '.*.tar.gz' -exec rm -rf {} \;
+```
+
+# 权限
 给目录或目录添加所有权限
 ```shell script
 chmod 777 文件名或目录
@@ -275,6 +284,7 @@ top -H -p <pid>
 压缩 a.c文件为test.tar.gz   
 ```shell script
 tar -czvf test.tar.gz a.c
+tar -czvf jenkins_bak.tar.gz /root/.jenkins
 ```
 解压
 ```shell script
@@ -283,7 +293,7 @@ tar -xzvf test.tar.gz
 Xshell下载文件sz 文件名
 Xshell上传文件rz
 
-#ls
+# ls
 ls（list）功能：列出目录内容
 ls -l 列出文件详细信息,提供简化版命令 ll
 ls -al 列出所有文件
@@ -304,7 +314,7 @@ mkdir（make directoriy）功能： 创建目录
  
 cat（catenate）功能：显示文本文件内容
 
-#more
+# more
 more功能：分页显示文件内容，还支持直接跳转行等功能。
 	语法：more file 
 	操作
@@ -327,7 +337,7 @@ mv(move) 功能：移动或更名现有的文件或目录。
 	语法：mv  [源文件或目录]	[目标文件或目录]
 	-f或--force 　若目标文件或目录与现有的文件或目录重复，则直接覆盖现有的文件或目录。
 
-#rpm
+# rpm
 rpm [参数] [软件]
 	-v 　显示指令执行过程。
 	-h或--hash 　套件安装时列出标记。
@@ -373,7 +383,7 @@ find ./ -size +100M
 ```shell script
 lsof -i:8089
 ```
-#启动程序
+# 启动程序
 [linux后台启动程序脚本实例](https://www.cnblogs.com/donfaquir/p/10540816.html)  
 
 让标准输出重定向到/dev/null中（丢弃标准输出），然后错误输出由于重用了标准输出的描述符，所以错误输出也被定向到了/dev/null中，错误输出同样也被丢弃了。执行了这条命令之后，该条shell命令将不会输出任何信息到控制台，也不会有任何信息输出到文件中[参考](https://www.cnblogs.com/ultranms/p/9353157.html) 
@@ -400,7 +410,7 @@ nohup java -jar xxxx.jar >/dev/null 2>&1 &
 jps -l | grep http.jar | awk '{print $2}' | xargs kill
 ```
 
-#磁盘 
+# 磁盘 
 查看当前目录下各个文件及目录占用空间大小
 ```shell script
 du -sh *
@@ -409,8 +419,12 @@ du -sh *
 ```shell script
 df -h
 ```
+查看当前目录大小
+```shell script
+du -h --max-depth=1 ./
+```
 
-#CPU 
+# CPU 
 查看物理CPU个数  
 ```shell script
 cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l
@@ -420,7 +434,7 @@ cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l
 cat /proc/cpuinfo| grep "cpu cores"| uniq
 ```
 
-#安装软件  
+# 安装软件  
 [RPM安装](https://blog.csdn.net/sunkun2013/article/details/73478580)  
 [Linux安装软件包的三种方法](https://blog.51cto.com/zero01/1972444)  
 安装 example.rpm 包并在安装过程中显示正在安装的文件信息及安装进度  

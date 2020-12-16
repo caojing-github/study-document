@@ -51,9 +51,13 @@ docker image prune
 docker image prune -a
 ```
 查看docker帮助文档
+```shell script
 docker --help
+```
 列出镜像
+```shell script
 docker images
+```
 	REPOSITORY：镜像所在的仓库名称
 	TAG：镜像标签
 	IMAGE ID：镜像ID
@@ -101,11 +105,16 @@ DaoCloud镜像仓库（需注册、每月限制10G）
 网易蜂巢镜像
 	https://c.163.com/hub#/m/home/
 	
-删除指定镜像	
+删除指定镜像
+```shell script
 docker rmi $IMAGE_ID
+```
 删除所有镜像
+```shell script
 docker rmi `docker images -q`
+```
 创建容器
+[Docker run 命令参数及使用](https://www.jianshu.com/p/ea4a00c6c21c)
 	使用命令docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 	创建容器命令：docker run
 	-i：表示以“交互模式”运行容器
@@ -179,15 +188,32 @@ docker commit -m=$MESSAGE -a=$AUTHOR $CONTAINER_ID $REPOSITORY:$TAG
 
 docker commit -m="Sonar database has been included" -a="caojing" cf7be525cf8b caojing1/mysql:5.6.42	 
 	 
-将镜像打包
+# 将镜像打包
+[](https://jingsam.github.io/2017/08/26/docker-save-and-docker-export.html)
+```shell script
 docker save mytomcat7 > /root/名称.tar.gz
+```
 示例:
-	 docker commit mycentos mytomcat7
-	 docker save mytomcat7 > /root/tomcat7.tar.gz
+```shell script
+docker commit mycentos mytomcat7
+docker save mytomcat7 > /root/tomcat7.tar.gz
+```
 加载镜像
+```shell script
 docker load < /root/名称.tar.gz
+```
 示例:
 	docker load < /root/tomcat7.tar.gz
+
+# 将容器打包
+```shell script
+docker export -o postgres-export.tar postgres
+```
+将打包的container载入进来使用docker import
+```shell script
+docker import postgres-export.tar postgres:latest
+```
+
 将host的8888端口映射到容器的8080端口，使用-p参数做映射
 示例：
 ```shell script
@@ -202,12 +228,19 @@ docker run -itd --rm -v /data:/data -v /etc/hosts:/etc/hosts -p 172.16.69.3:9099
 docker start `docker ps -a -q`
 
 注册Docker Hub后，linux登录Docker Hub
+```shell script
 docker login
-打tag
-docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]，示例：
+```
+使用tag将镜像重命名
+```shell script
+docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+docker tag busybox:latest mybusybox:latest
 docker tag mytomcat7 2078068092/mytomcat7
+```
 push镜像
+```shell script
 docker push 2078068092/mytomcat7/:latest
+```
 
 windows docker仓库配置文件，示例 C:\Users\CaoJing\.docker\daemon.json
 用docker启动官方镜像
@@ -247,6 +280,12 @@ ENTRYPOINT：不解释了照着写，就是开始运行的意思。
 # 安装私服
 ```shell script
 docker run --name registry -d --restart=always -privileged=true -p 5000:5000 -v /datasource/caojing/registry/v2/repositories:/var/lib/registry registry
+```
+
+# 监控
+查看容器的资源使用状态
+```shell script
+docker stats nginx
 ```
 
 

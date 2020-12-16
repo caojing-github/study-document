@@ -1,6 +1,27 @@
-﻿# docker安装
+﻿# yum安装
+[](https://blog.csdn.net/diyiday/article/details/79024825)
+
+启动jenkins  
+```shell script
+systemctl start jenkins
+sudo service jenkins start  
+```
+重启jenkins 
+```shell script
+systemctl restart jenkins
+sudo service jenkins restart 
+```
+
+# 迁移jenkins
+[](https://yq.aliyun.com/articles/346685)
+
+# docker安装
 ```shell script
 docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 -e TZ='Asia/Shanghai' -u root jenkins/jenkins:lts
+```
+[](https://www.jenkins.io/zh/doc/book/installing/)
+```shell script
+docker run -u root -d -p 8080:8080 -p 50000:50000 -v /var/lib/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean 
 ```
 
 Jenkins新建视图出错，解决方法在/var/lib/jenkins下修改jenkins.model.JenkinsLocationConfiguration.xml文件，将
@@ -8,14 +29,6 @@ jenkinsUrl那行注掉即可
 
 # 不推荐docker安装，问题可能比较多，也没有需求  
 [官网安装链接](https://pkg.jenkins.io/redhat-stable/)  
-
-启动jenkins  
-```shell script
-sudo service jenkins start  
-```
-重启jenkins 
-```shell script
-sudo service jenkins restart 
 
 # 解决jenkins下载插件比较慢
 [相关链接](https://blog.csdn.net/qq_39653459/article/details/103585084?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)  
@@ -49,6 +62,7 @@ docker run -it --rm -v /etc/hosts:/etc/hosts -v /data:/data -p 9090:8080 -e SPRI
 # 启动war包  
 ```shell script
 nohup java -jar jenkins.war --httpPort=8081 > jenkins.log 2>&1 &
+nohup java -jar /usr/lib/jenkins/jenkins.war --httpPort=8080 > jenkins.log 2>&1 &
 ```
 
 # 常见问题解决 

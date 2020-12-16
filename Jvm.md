@@ -18,6 +18,7 @@ jstack -l 进程pid > /Users/icourt/Desktop/dump
 堆转储文件
 ```shell script
 jmap -dump:format=b,file=filename 进程pid
+jmap -dump:format=b,file=cart.hprof 9441
 ```
 
 查看java进程信息
@@ -57,13 +58,35 @@ printf "%x\n" [十进制数字]
 5. 通过刚刚转换的16进制数字从堆栈信息里找到对应的线程堆栈。就可以从该堆栈中看出端倪。 
 
 ### 内存问题排查 
+```
+outOfMemoryError 年老代内存不足。
+outOfMemoryError:PermGen Space 永久代内存不足。
+outOfMemoryError:GC overhead limit exceed 垃圾回收时间占用系统运行时间的98%或以上。
+```
 ####  内存溢出
+运行前添加好jvm参数，发生内存溢出时生成dump文件
 -XX:+HeapDumpOnOutOfMemoryError 该参数作用是：在程序内存溢出时输出dump文件。
 -XX:HeapDumpPath 该参数作用是：指定程序内存溢出输出dump文件路径
 ```shell script
--XX:+HeapDumpOnOutOfMemoryError
--XX:HeapDumpPath=D:\heapdump
+-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D:\heapdump
 ```
+运行时导出dump文件
+```shell script
+jmap -dump:format=b,file=filename 进程pid
+jmap -dump:format=b,file=cart.hprof 9441
+jmap -dump:format=b,file=/data/case-parse.hprof 1
+jmap -dump:live,format=b,file=live.hprof 1
+./root/mat/ParseHeapDump.sh live.hprof  org.eclipse.mat.api:suspects org.eclipse.mat.api:overview org.eclipse.mat.api:top_components
+
+```
+>其中dump:live表示活动的对象
+
+分析dump文件
+[](https://www.cnblogs.com/liangzs/p/8489321.html)
+
+jmap出现问题Caused by: sun.jvm.hotspot.debugger.DebuggerException: cannot open binary file
+[](https://xuwanjin.me/2018/03/30/java_command_jmap/)
+
 然后使用dump 分析工具进行分析，比如常用的`MAT，Jprofile，jvisualvm` 等工具
 ####  内存没有溢出，但 GC 不健康
 ...
@@ -90,4 +113,17 @@ jstack -l 843 > /data/jstack.out
 10进制855转换为16进制
 ```shell script
 printf "%x\n" 855
+```
+
+# JVM启动必填参数
+```shell script
+# -XX:+HeapDumpOnOutOfMemoryError 该参数作用是：在程序内存溢出时输出dump文件。
+# -XX:HeapDumpPath 该参数作用是：指定程序内存溢出输出dump文件路径
+-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/heapdump
+
+# 远程调试
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+
+# 提高应用启动速度 https://hongjiang.info/jvm-random-and-entropy-source/
+-Djava.security.egd=file:/dev/./urandom
 ```
