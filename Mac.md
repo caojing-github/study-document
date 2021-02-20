@@ -42,8 +42,13 @@ source ~/.bash_profile 或 source ~/.zshrc
 
 [安装mysql5.7](https://www.cnblogs.com/kimbo/p/8724595.html)  
 
-复制文件路径  
-`Option+Command+C`  
+[复制文件路径](https://www.zhihu.com/question/22883229)
+```
+选中该文件夹并右键（会弹出菜单），此时按下键盘上的“Option”按键同时点击菜单中的“拷贝XXXXX”
+``` 
+```
+Option+Command+C
+```
 
 跳转目录  
 `command+shift+G` 

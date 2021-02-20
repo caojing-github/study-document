@@ -36,6 +36,7 @@ docker info
 docker system df
 ```
 
+# 清理磁盘空间
 删除所有停止的容器
 ```shell script
 docker system prune
@@ -58,13 +59,16 @@ docker --help
 ```shell script
 docker images
 ```
-	REPOSITORY：镜像所在的仓库名称
-	TAG：镜像标签
-	IMAGE ID：镜像ID
-	CREATED：镜像的创建日期（不是获取该镜像的日期）
-	SIZE：镜像大小
-从镜像Ubuntu:12.04启动一个容器，而这个镜像的操作系统就是Ubuntu:12.04	
-docker run --name custom_container_name –i –t docker.io/ubunto:12.04 /bin/bash
+>REPOSITORY：镜像所在的仓库名称
+>TAG：镜像标签
+>IMAGE ID：镜像ID
+>CREATED：镜像的创建日期（不是获取该镜像的日期）
+>SIZE：镜像大小
+
+从镜像Ubuntu:12.04启动一个容器，而这个镜像的操作系统就是Ubuntu:12.04
+```shell script
+docker run --name custom_container_name -it docker.io/ubunto:12.04 /bin/bash
+```
 
 docker search ${name} 查找docker hub上的镜像
 	NAME：仓库名称
@@ -133,6 +137,10 @@ docker run -it --name caojing centos:7 /bin/bash
 创建容器，后端启动（不登录进容器,-e TZ='Asia/Shanghai'表示时区）
 ```shell script
 docker run -itd --name centos7 -e TZ='Asia/Shanghai' centos:7 /bin/bash
+```
+进入容器
+```shell script
+docker exec -it centos7 /bin/bash
 ```
 查看正在运行的容器
 ```shell script
@@ -237,9 +245,32 @@ docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
 docker tag busybox:latest mybusybox:latest
 docker tag mytomcat7 2078068092/mytomcat7
 ```
-push镜像
+
+# Dockerfile  
+FROM：jre运行环境，属于项目的依赖环境，没有这个运行不了。
+MAINTAINER：写开发者姓名及邮箱
+ADD：打包后的项目地址及自定义名称
+EXPOSE：项目的端口号
+ENTRYPOINT：不解释了照着写，就是开始运行的意思。
+
+# docker build
+[Docker build 命令](https://www.runoob.com/docker/docker-build-command.html)
+示例
 ```shell script
-docker push 2078068092/mytomcat7/:latest
+docker build -t 172.16.71.2:5000/judgment-parse:200223-1 --build-arg JAR_FILE=target/judgment-parse-1.0-SNAPSHOT.jar .
+docker build -t banner:1 .
+```
+
+# docker push
+示例
+```shell script
+docker push 172.16.71.2:5000/judgment-parse:200223-1
+```
+
+# docker run
+示例
+```shell script
+docker run -itd --rm -v /etc/hosts:/etc/hosts -v /data:/data -p 9090:8080 -p 5005:5005 -e SPRING_PROFILES_ACTIVE=pro -e HANLP_ROOT=/data/hanlp ds2:5000/judgment-parse:200223-1
 ```
 
 windows docker仓库配置文件，示例 C:\Users\CaoJing\.docker\daemon.json
@@ -269,13 +300,6 @@ docker logs -f -t --tail 20 容器名
 -tail=10 : 查看最后的10条日志
 
 docker run -it --rm -p 8080:8080 tomcat:8.5
-
-# DockerFile  
-FROM：jre运行环境，属于项目的依赖环境，没有这个运行不了。
-MAINTAINER：写开发者姓名及邮箱
-ADD：打包后的项目地址及自定义名称
-EXPOSE：项目的端口号
-ENTRYPOINT：不解释了照着写，就是开始运行的意思。
 
 # 安装私服
 ```shell script

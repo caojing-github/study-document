@@ -8,6 +8,19 @@ SET PASSWORD FOR 'root'@'%' = PASSWORD('123456')
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123456');
 flush privileges;
 ```
+查看所有连接
+```sql
+show full processlist;
+```
+查询特定ip的连接
+```sql
+select * from information_schema.processlist where host='172.16.69.3';
+select COUNT(*) from information_schema.processlist where host='172.16.69.3';
+```
+查询各个ip的连接数
+```sql
+select HOST, COUNT(*) from information_schema.processlist GROUP BY HOST;
+```
 创建容器  
 ```shell script
 docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
@@ -21,10 +34,6 @@ show databases;
 切换数据库  
 ```sql
 use 数据库名;
-```
-查看所有连接
-```sql
-show full processlist;
 ```
 
 `SQL_NO_CACHE`关键字来禁止缓存查询结果

@@ -4,28 +4,23 @@
 ```shell script
 :wq!
 ```
+下一页
+```shell script
+ctrl + f
+```
+上一页
+```shell script
+ctrl + b 
+```
+删除光标所在行
+```shell script
+dd
+```
+单行复制
+```shell script
+yy
+```
 
-vim	操作
-	空格键：前进一页 或 page down
-	b：后退一页 或 page up
-	d：前进半页
-	u：后退半页
-	回车键：前进一行 或 方向键向下
-	y：后退一行	或 方向键向上
-	/字符串：向下搜索
-	?字符串：向上搜索
-	v：进入vim编辑器
-	左右方向键：相当于水平滚动条
-	q：退出
-
-如果pageUp或pageDown失效，可以使用下面快捷键
-下一页 ctrl + f
-上一页 ctrl + b 
-上半页 ctrl + u 
-下半页 ctrl + d 
-
-单行复制 yy
-删除光标所在行 dd
 撤销	u
 重做	ctrl+r
 向后搜索字符串pattern /pattern

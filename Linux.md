@@ -193,9 +193,10 @@ cp -r /源文件或目录 /目的文件或目录
 ```shell script
 netstat -ntlp
 ```
-查看端口占用PID
+[查看端口占用PID](https://www.runoob.com/w3cnote/linux-check-port-usage.html)
 ```shell script
-netstat -tunlp | grep 22
+lsof -i:2380
+netstat -anp | grep 2379
 ```
 测试端口连接  
 ```shell script

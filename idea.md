@@ -46,5 +46,6 @@ public static void main(String[] args) {
 https://github.com/caojing-github/idea.git
 token
 16986525cb88eb5896a4308919eaed21f33dd6d4
+b86f1cb95c06b151c5f057b3486b16c51385e787
 ```
 
